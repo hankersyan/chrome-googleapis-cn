@@ -1,9 +1,9 @@
 chrome.webRequest.onBeforeRequest.addListener(
   function(details) {
     var url = details.url;
-    //通过匹配测试一个请求
-    if (url.indexOf("googleapis") != -1) {
-	var newUrl = url.replace(/http[s]{0,1}\:\/\/(\w+)\.googleapis\.com/, 'http://$1.useso.com');
+    if (url.indexOf("ajax.googleapis.com/ajax/libs/jquery") != -1) {
+    	// baidu cdn 不支持 jQuery 1.12.4
+	var newUrl = url.replace(/ajax\.googleapis\.com\/ajax\/libs/, 'cdnjs.cloudflare.com/ajax/libs');
 	return {
 		redirectUrl: newUrl
 	};
